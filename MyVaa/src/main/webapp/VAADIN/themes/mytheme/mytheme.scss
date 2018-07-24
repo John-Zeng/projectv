@@ -1,0 +1,121 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+// $v-border: none;
+// $v-border-radius: 0px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+@include valo;
+
+/* Panel */
+.v-panel {
+    background: none;
+    border-radius: 0px;
+    border: none;
+    box-shadow: none;
+}
+
+/* Start View */
+/*.startview {
+    background: url("main.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}*/
+
+.v-ui {
+    background: url("main.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.startview .v-button {
+    width: 250px;
+    height: 36px;
+    border: 1px solid #358fec;
+    border-radius: 18px;
+}
+
+/* Left Panel */
+.leftpanel {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.leftpanel .v-widget {
+    text-align: center;
+}
+
+/* Right Panel */
+.rightpanel {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.rightpanel .v-widget {
+    text-align: center;
+}
+
+.rightpanel .v-label {
+    text-align: left;
+}
+
+/* Log In View */
+.loginview .v-link {
+    text-decoration: none;
+    color: #555555;
+}
+
+.loginview .v-link:hover {
+    text-decoration: underline;
+    color: #0069cc;
+}
+
+.loginview .v-button {
+    width: 120px;
+}
+
+/* Sign Up View */
+.signupview .v-button {
+    width: 120px;
+}
+
+.signupview .v-textfield {
+    width: 250px;
+}
+
+
+.v-popupview-popup {
+    padding: 20px;
+}
+
+h3 {
+    font-weight: bold;
+}
+}
