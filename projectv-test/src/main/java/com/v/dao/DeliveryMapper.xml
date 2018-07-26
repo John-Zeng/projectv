@@ -7,7 +7,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="phostcode" property="phostcode" jdbcType="VARCHAR" />
+    <result column="phostcode" property="phostcode" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, user_id, name, address, phone, phostcode
@@ -27,7 +27,7 @@
       address, phone, phostcode
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{phostcode,jdbcType=VARCHAR}
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{phostcode,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.v.bean.Delivery" >
@@ -69,7 +69,7 @@
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="phostcode != null" >
-        #{phostcode,jdbcType=VARCHAR},
+        #{phostcode,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -89,7 +89,7 @@
         phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="phostcode != null" >
-        phostcode = #{phostcode,jdbcType=VARCHAR},
+        phostcode = #{phostcode,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -100,7 +100,7 @@
       name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      phostcode = #{phostcode,jdbcType=VARCHAR}
+      phostcode = #{phostcode,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

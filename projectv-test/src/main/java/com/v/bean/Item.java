@@ -5,7 +5,7 @@ public class Item {
 
     private Integer count;
 
-    private Integer orderId;
+    private String orderId;
 
     private Integer saleInfoId;
 
@@ -29,12 +29,12 @@ public class Item {
         this.count = count;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 
     public Integer getSaleInfoId() {

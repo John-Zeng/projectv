@@ -13,7 +13,7 @@ public class Order {
 
     private Integer deliveryId;
 
-    private Integer total;
+    private Integer totalBill;
 
     private String notes;
 
@@ -57,12 +57,12 @@ public class Order {
         this.deliveryId = deliveryId;
     }
 
-    public Integer getTotal() {
-        return total;
+    public Integer getTotalBill() {
+        return totalBill;
     }
 
-    public void setTotal(Integer total) {
-        this.total = total;
+    public void setTotalBill(Integer totalBill) {
+        this.totalBill = totalBill;
     }
 
     public String getNotes() {

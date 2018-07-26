@@ -11,7 +11,7 @@
     <result column="telephone" property="telephone" jdbcType="VARCHAR" />
     <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="gender" property="gender" jdbcType="TINYINT" />
-    <result column="balance" property="balance" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, username, pay_pwd, password, salt, email, telephone, birthday, gender, balance
@@ -33,7 +33,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{payPwd,jdbcType=CHAR}, 
       #{password,jdbcType=CHAR}, #{salt,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=DATE}, #{gender,jdbcType=TINYINT}, #{balance,jdbcType=INTEGER}
+      #{birthday,jdbcType=DATE}, #{gender,jdbcType=TINYINT}, #{balance,jdbcType=DOUBLE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.v.bean.User" >
@@ -99,7 +99,7 @@
         #{gender,jdbcType=TINYINT},
       </if>
       <if test="balance != null" >
-        #{balance,jdbcType=INTEGER},
+        #{balance,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -131,7 +131,7 @@
         gender = #{gender,jdbcType=TINYINT},
       </if>
       <if test="balance != null" >
-        balance = #{balance,jdbcType=INTEGER},
+        balance = #{balance,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -146,7 +146,7 @@
       telephone = #{telephone,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=DATE},
       gender = #{gender,jdbcType=TINYINT},
-      balance = #{balance,jdbcType=INTEGER}
+      balance = #{balance,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

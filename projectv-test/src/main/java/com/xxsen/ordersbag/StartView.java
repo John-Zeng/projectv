@@ -13,10 +13,9 @@ public class StartView extends AbsoluteLayout implements View {
     
     private void init() {
         HorizontalLayout h = new HorizontalLayout();
-        BagView bagView = new BagView();
         
         PopupView op = new PopupView(null, o.ordersview());
-        PopupView bp = new PopupView(null, bagView);
+        PopupView bp = new PopupView(null, new BagView());
         op.setHideOnMouseOut(false);
         bp.setHideOnMouseOut(false);
 

@@ -10,7 +10,6 @@
     <result column="price" property="price" jdbcType="INTEGER" />
     <result column="quantity" property="quantity" jdbcType="INTEGER" />
     <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
-    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
     <result column="shop_id" property="shopId" jdbcType="INTEGER" />
     <result column="state" property="state" jdbcType="TINYINT" />
   </resultMap>
@@ -18,8 +17,7 @@
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, company_id, image, mvo_cmdt_id, name, price, quantity, seller_id, brand_id, shop_id, 
-    state
+    id, company_id, image, mvo_cmdt_id, name, price, quantity, seller_id, shop_id, state
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -39,14 +37,12 @@
   <insert id="insert" parameterType="com.v.bean.Commodity" >
     insert into sale_info (id, company_id, image, 
       mvo_cmdt_id, name, price, 
-      quantity, seller_id, brand_id, 
-      shop_id, state, description
-      )
+      quantity, seller_id, shop_id, 
+      state, description)
     values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, 
       #{mvoCmdtId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
-      #{quantity,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, 
-      #{shopId,jdbcType=INTEGER}, #{state,jdbcType=TINYINT}, #{description,jdbcType=LONGVARCHAR}
-      )
+      #{quantity,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{state,jdbcType=TINYINT}, #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.v.bean.Commodity" >
     insert into sale_info
@@ -74,9 +70,6 @@
       </if>
       <if test="sellerId != null" >
         seller_id,
-      </if>
-      <if test="brandId != null" >
-        brand_id,
       </if>
       <if test="shopId != null" >
         shop_id,
@@ -113,9 +106,6 @@
       <if test="sellerId != null" >
         #{sellerId,jdbcType=INTEGER},
       </if>
-      <if test="brandId != null" >
-        #{brandId,jdbcType=INTEGER},
-      </if>
       <if test="shopId != null" >
         #{shopId,jdbcType=INTEGER},
       </if>
@@ -151,9 +141,6 @@
       <if test="sellerId != null" >
         seller_id = #{sellerId,jdbcType=INTEGER},
       </if>
-      <if test="brandId != null" >
-        brand_id = #{brandId,jdbcType=INTEGER},
-      </if>
       <if test="shopId != null" >
         shop_id = #{shopId,jdbcType=INTEGER},
       </if>
@@ -175,7 +162,6 @@
       price = #{price,jdbcType=INTEGER},
       quantity = #{quantity,jdbcType=INTEGER},
       seller_id = #{sellerId,jdbcType=INTEGER},
-      brand_id = #{brandId,jdbcType=INTEGER},
       shop_id = #{shopId,jdbcType=INTEGER},
       state = #{state,jdbcType=TINYINT},
       description = #{description,jdbcType=LONGVARCHAR}
@@ -190,7 +176,6 @@
       price = #{price,jdbcType=INTEGER},
       quantity = #{quantity,jdbcType=INTEGER},
       seller_id = #{sellerId,jdbcType=INTEGER},
-      brand_id = #{brandId,jdbcType=INTEGER},
       shop_id = #{shopId,jdbcType=INTEGER},
       state = #{state,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}

@@ -12,7 +12,7 @@ create table seller
      password        varchar(30),
      telephone       varchar(30),
      username        varchar(20),
-     balance         int,
+     balance         int check (balance >= 0),
      pay_pwd         varchar(50),
      primary key (id)   
     );
@@ -27,7 +27,7 @@ create table user
      telephone       varchar(20),
      birthday        date,
      gender          tinyint check (gender in (0,1)),
-     balance         int check (balance >= 0),
+     balance         double check (balance >= 0),
      primary key (id)
     );
 
@@ -41,7 +41,6 @@ create table sale_info
      price           int check (price >= 0),
      quantity        int,
      seller_id       int,
-     brand_id        int,
      shop_id         int,
      state           tinyint check (state in (0,1)),
      primary key (id),
@@ -55,7 +54,7 @@ create table delivery_info
      name            varchar(20),
      address         varchar(81),
      phone           varchar(20),
-     phostcode       varchar(10),
+     phostcode       int,
      primary key (id),
      foreign key (user_id) references user (id)
         on delete set null             
@@ -68,7 +67,7 @@ create table order_form
      consumer_id     int,
      delivery_id     int,
      notes           text,
-     total           int check (total >= 0),
+     total_bill      int check (total >= 0),
      primary key (id),
      foreign key (consumer_id) references user (id)
         on delete set null 
@@ -78,7 +77,7 @@ create table order_item
     (id              int auto_increment,
      count           int check (count >= 0),
      notes           text,
-     order_id        int,
+     order_id        varchar(40),
      sale_info_id    int,
      state           tinyint check (state in (1,2,3,4)),
      primary key (id),

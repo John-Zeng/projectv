@@ -17,8 +17,6 @@ public class Commodity {
 
     private Integer sellerId;
 
-    private Integer brandId;
-
     private Integer shopId;
 
     private Byte state;
@@ -87,14 +85,6 @@ public class Commodity {
 
     public void setSellerId(Integer sellerId) {
         this.sellerId = sellerId;
-    }
-
-    public Integer getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
     }
 
     public Integer getShopId() {

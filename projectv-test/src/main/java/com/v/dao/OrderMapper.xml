@@ -7,13 +7,13 @@
     <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
     <result column="consumer_id" property="consumerId" jdbcType="INTEGER" />
     <result column="delivery_id" property="deliveryId" jdbcType="INTEGER" />
-    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="total_bill" property="totalBill" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.v.bean.Order" extends="BaseResultMap" >
     <result column="notes" property="notes" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, order_id, creation_time, consumer_id, delivery_id, total
+    id, order_id, creation_time, consumer_id, delivery_id, total_bill
   </sql>
   <sql id="Blob_Column_List" >
     notes
@@ -32,10 +32,10 @@
   </delete>
   <insert id="insert" parameterType="com.v.bean.Order" >
     insert into order_form (id, order_id, creation_time, 
-      consumer_id, delivery_id, total, 
+      consumer_id, delivery_id, total_bill, 
       notes)
     values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{creationTime,jdbcType=TIMESTAMP}, 
-      #{consumerId,jdbcType=INTEGER}, #{deliveryId,jdbcType=INTEGER}, #{total,jdbcType=INTEGER}, 
+      #{consumerId,jdbcType=INTEGER}, #{deliveryId,jdbcType=INTEGER}, #{totalBill,jdbcType=INTEGER}, 
       #{notes,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.v.bean.Order" >
@@ -56,8 +56,8 @@
       <if test="deliveryId != null" >
         delivery_id,
       </if>
-      <if test="total != null" >
-        total,
+      <if test="totalBill != null" >
+        total_bill,
       </if>
       <if test="notes != null" >
         notes,
@@ -79,8 +79,8 @@
       <if test="deliveryId != null" >
         #{deliveryId,jdbcType=INTEGER},
       </if>
-      <if test="total != null" >
-        #{total,jdbcType=INTEGER},
+      <if test="totalBill != null" >
+        #{totalBill,jdbcType=INTEGER},
       </if>
       <if test="notes != null" >
         #{notes,jdbcType=LONGVARCHAR},
@@ -102,8 +102,8 @@
       <if test="deliveryId != null" >
         delivery_id = #{deliveryId,jdbcType=INTEGER},
       </if>
-      <if test="total != null" >
-        total = #{total,jdbcType=INTEGER},
+      <if test="totalBill != null" >
+        total_bill = #{totalBill,jdbcType=INTEGER},
       </if>
       <if test="notes != null" >
         notes = #{notes,jdbcType=LONGVARCHAR},
@@ -117,7 +117,7 @@
       creation_time = #{creationTime,jdbcType=TIMESTAMP},
       consumer_id = #{consumerId,jdbcType=INTEGER},
       delivery_id = #{deliveryId,jdbcType=INTEGER},
-      total = #{total,jdbcType=INTEGER},
+      total_bill = #{totalBill,jdbcType=INTEGER},
       notes = #{notes,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -127,7 +127,7 @@
       creation_time = #{creationTime,jdbcType=TIMESTAMP},
       consumer_id = #{consumerId,jdbcType=INTEGER},
       delivery_id = #{deliveryId,jdbcType=INTEGER},
-      total = #{total,jdbcType=INTEGER}
+      total_bill = #{totalBill,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

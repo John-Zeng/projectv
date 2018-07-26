@@ -11,7 +11,7 @@ public class Delivery {
 
     private String phone;
 
-    private String phostcode;
+    private Integer phostcode;
 
     public Integer getId() {
         return id;
@@ -53,11 +53,11 @@ public class Delivery {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getPhostcode() {
+    public Integer getPhostcode() {
         return phostcode;
     }
 
-    public void setPhostcode(String phostcode) {
-        this.phostcode = phostcode == null ? null : phostcode.trim();
+    public void setPhostcode(Integer phostcode) {
+        this.phostcode = phostcode;
     }
 }

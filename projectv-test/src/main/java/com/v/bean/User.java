@@ -21,7 +21,7 @@ public class User {
 
     private Byte gender;
 
-    private Integer balance;
+    private Double balance;
 
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Integer getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Integer balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 }
