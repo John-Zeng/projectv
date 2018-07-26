@@ -8,7 +8,7 @@ drop table seller;
 
 create table seller
     (id              int auto_increment,
-     email           varchar(30).     
+     email           varchar(30),
      password        varchar(30),
      telephone       varchar(30),
      username        varchar(20),
@@ -46,7 +46,7 @@ create table sale_info
      state           tinyint check (state in (0,1)),
      primary key (id),
      foreign key (seller_id) references seller (id) 
-        on delete set null update cascade 
+        on delete set null 
     );
 
 create table delivery_info
@@ -58,7 +58,7 @@ create table delivery_info
      phostcode       varchar(10),
      primary key (id),
      foreign key (user_id) references user (id)
-        on delete set null update cascade                
+        on delete set null             
     );
 
 create table order_form
@@ -71,7 +71,7 @@ create table order_form
      total           int check (total >= 0),
      primary key (id),
      foreign key (consumer_id) references user (id)
-        on delete set null update cascade
+        on delete set null 
     );
 
 create table order_item
@@ -83,8 +83,7 @@ create table order_item
      state           tinyint check (state in (1,2,3,4)),
      primary key (id),
      foreign key (sale_info_id) references sale_info (id)
-        on delete set null update cascade,
-
+        on delete set null
     );
 
 create table cart
@@ -93,6 +92,6 @@ create table cart
      quantity        int check (quantity >= 0), 
      primary key (user_id, sale_info_id),   
      foreign key (user_id) references user (id)
-        on delete set null update cascade,
+        on delete cascade,
      foreign key (sale_info_id) references sale_info (id)
     );
