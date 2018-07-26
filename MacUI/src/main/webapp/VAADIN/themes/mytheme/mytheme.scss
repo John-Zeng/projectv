@@ -1,0 +1,143 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+//$v-border-radius: 4px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+  @include valo;
+
+  // Insert your own theme rules here
+  .panel_sty{
+  background-color:black;
+  }
+  
+  .space .v-spacing{
+  width:55px;
+  height:12px;
+  }
+  
+  .capsty .v-caption{
+	font-weight:900;
+	color:wheat;
+}
+   .btsty .v-button {
+	padding: 0 16px;
+    color: wheat;
+    font-weight: 900;
+    border-radius: 4px;
+    border: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+
+}
+
+    .taglabel .v-label {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    font-size: 30px;
+    color: wheat;
+    font-weight: 900;
+    background:black;
+}
+	.botlabel .v-label {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    font-size: 22px;
+    color: wheat;
+    font-weight: 900;
+    background:black;
+}
+
+	.labsty .v-label{
+	color:wheat;
+	font-weight: 900;
+	}
+
+	.v-panel {
+	border-radius: 0px;
+	border: 0px;
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+	overflow: visible !important;
+}
+ 	.logosty .v-button {
+	padding: 0 1px;
+    color: wheat;
+    font-weight: 900;
+    height:60px;
+    border-radius: 4px;
+    border: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+
+}
+	.btsp .v-margin-left {
+    padding-left: 1px;
+}
+	.btspp .v-margin-right {
+    padding-right: 1px;
+}
+
+	.picbut .v-button {
+	padding: 0 30px;
+    color: wheat;
+    font-weight: 900;
+    height:600px;
+    border-radius: 4px;
+    border: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+
+}
+
+}

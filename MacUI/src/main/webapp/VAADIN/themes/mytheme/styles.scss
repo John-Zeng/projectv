@@ -1,0 +1,46 @@
+@import "mytheme.scss";
+@import "addons.scss";
+
+// This file prefixes all rules with the theme name to avoid causing conflicts with other themes.
+// The actual styles should be defined in mytheme.scss
+
+.mytheme {
+  @include addons;
+  @include mytheme;
+  
+
+}
+.panelwid .v-widget {
+    text-align:center;
+}
+.v-scrollable {
+	overflow: true;
+}
+.v-icon {
+	cursor: inherit;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size:32px;
+	color:wheat;
+}
+
+.bticon .v-icon{
+	cursor: inherit;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    width:850px;
+    height:500px;
+}
+.btminiicon .v-icon{
+	cursor: inherit;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	width:680px;
+	height:500px;
+}
