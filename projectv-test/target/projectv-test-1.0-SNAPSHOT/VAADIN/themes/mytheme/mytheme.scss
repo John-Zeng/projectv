@@ -1,0 +1,45 @@
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+    @include valo;
+
+    .v-popupview-popup {
+        border-radius: 20px;
+        border: 1px solid #358fec;
+        padding: 10px;
+    }
+    
+    a {
+        color: #555555;
+    }
+    
+    a:hover {
+        color: #0069cc;
+    }
+    
+    .v-button {
+        width: 120px;
+        height: 36px;
+        border: none;
+        border-radius: 18px;
+        box-shadow: none;
+    }
+    
+    .v-slot-scrollv {
+        overflow: scroll;
+    }
+    
+    .v-label-spec {
+        color: #555555;
+    }
+    
+    .v-panel-leftpanel {
+        border: none;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    
+    .v-button-link:after {
+        content: none;
+    }
+}

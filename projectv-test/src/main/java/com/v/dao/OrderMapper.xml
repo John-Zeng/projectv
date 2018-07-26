@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.v.bean.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="consumer_id" property="consumerId" jdbcType="INTEGER" />
+    <result column="receiver_delivery_info_id" property="receiverDeliveryInfoId" jdbcType="INTEGER" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, consumer_id, receiver_delivery_info_id, creation_time, total, notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_form
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_form
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.v.bean.Order" >
+    insert into order_form (id, order_id, consumer_id, 
+      receiver_delivery_info_id, creation_time, 
+      total, notes)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{consumerId,jdbcType=INTEGER}, 
+      #{receiverDeliveryInfoId,jdbcType=INTEGER}, #{creationTime,jdbcType=TIMESTAMP}, 
+      #{total,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.v.bean.Order" >
+    insert into order_form
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="consumerId != null" >
+        consumer_id,
+      </if>
+      <if test="receiverDeliveryInfoId != null" >
+        receiver_delivery_info_id,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="consumerId != null" >
+        #{consumerId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverDeliveryInfoId != null" >
+        #{receiverDeliveryInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.v.bean.Order" >
+    update order_form
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="consumerId != null" >
+        consumer_id = #{consumerId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverDeliveryInfoId != null" >
+        receiver_delivery_info_id = #{receiverDeliveryInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.v.bean.Order" >
+    update order_form
+    set order_id = #{orderId,jdbcType=INTEGER},
+      consumer_id = #{consumerId,jdbcType=INTEGER},
+      receiver_delivery_info_id = #{receiverDeliveryInfoId,jdbcType=INTEGER},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=INTEGER},
+      notes = #{notes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
