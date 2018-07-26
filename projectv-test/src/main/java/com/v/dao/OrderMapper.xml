@@ -4,18 +4,25 @@
   <resultMap id="BaseResultMap" type="com.v.bean.Order" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="order_id" property="orderId" jdbcType="INTEGER" />
-    <result column="consumer_id" property="consumerId" jdbcType="INTEGER" />
-    <result column="receiver_delivery_info_id" property="receiverDeliveryInfoId" jdbcType="INTEGER" />
     <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="consumer_id" property="consumerId" jdbcType="INTEGER" />
+    <result column="delivery_id" property="deliveryId" jdbcType="INTEGER" />
     <result column="total" property="total" jdbcType="INTEGER" />
-    <result column="notes" property="notes" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.v.bean.Order" extends="BaseResultMap" >
+    <result column="notes" property="notes" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, order_id, consumer_id, receiver_delivery_info_id, creation_time, total, notes
+    id, order_id, creation_time, consumer_id, delivery_id, total
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <sql id="Blob_Column_List" >
+    notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from order_form
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -24,12 +31,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.v.bean.Order" >
-    insert into order_form (id, order_id, consumer_id, 
-      receiver_delivery_info_id, creation_time, 
-      total, notes)
-    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{consumerId,jdbcType=INTEGER}, 
-      #{receiverDeliveryInfoId,jdbcType=INTEGER}, #{creationTime,jdbcType=TIMESTAMP}, 
-      #{total,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR})
+    insert into order_form (id, order_id, creation_time, 
+      consumer_id, delivery_id, total, 
+      notes)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{creationTime,jdbcType=TIMESTAMP}, 
+      #{consumerId,jdbcType=INTEGER}, #{deliveryId,jdbcType=INTEGER}, #{total,jdbcType=INTEGER}, 
+      #{notes,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.v.bean.Order" >
     insert into order_form
@@ -40,14 +47,14 @@
       <if test="orderId != null" >
         order_id,
       </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
       <if test="consumerId != null" >
         consumer_id,
       </if>
-      <if test="receiverDeliveryInfoId != null" >
-        receiver_delivery_info_id,
-      </if>
-      <if test="creationTime != null" >
-        creation_time,
+      <if test="deliveryId != null" >
+        delivery_id,
       </if>
       <if test="total != null" >
         total,
@@ -63,20 +70,20 @@
       <if test="orderId != null" >
         #{orderId,jdbcType=INTEGER},
       </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="consumerId != null" >
         #{consumerId,jdbcType=INTEGER},
       </if>
-      <if test="receiverDeliveryInfoId != null" >
-        #{receiverDeliveryInfoId,jdbcType=INTEGER},
-      </if>
-      <if test="creationTime != null" >
-        #{creationTime,jdbcType=TIMESTAMP},
+      <if test="deliveryId != null" >
+        #{deliveryId,jdbcType=INTEGER},
       </if>
       <if test="total != null" >
         #{total,jdbcType=INTEGER},
       </if>
       <if test="notes != null" >
-        #{notes,jdbcType=VARCHAR},
+        #{notes,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -86,32 +93,41 @@
       <if test="orderId != null" >
         order_id = #{orderId,jdbcType=INTEGER},
       </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="consumerId != null" >
         consumer_id = #{consumerId,jdbcType=INTEGER},
       </if>
-      <if test="receiverDeliveryInfoId != null" >
-        receiver_delivery_info_id = #{receiverDeliveryInfoId,jdbcType=INTEGER},
-      </if>
-      <if test="creationTime != null" >
-        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      <if test="deliveryId != null" >
+        delivery_id = #{deliveryId,jdbcType=INTEGER},
       </if>
       <if test="total != null" >
         total = #{total,jdbcType=INTEGER},
       </if>
       <if test="notes != null" >
-        notes = #{notes,jdbcType=VARCHAR},
+        notes = #{notes,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.v.bean.Order" >
+    update order_form
+    set order_id = #{orderId,jdbcType=INTEGER},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      consumer_id = #{consumerId,jdbcType=INTEGER},
+      delivery_id = #{deliveryId,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      notes = #{notes,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.v.bean.Order" >
     update order_form
     set order_id = #{orderId,jdbcType=INTEGER},
-      consumer_id = #{consumerId,jdbcType=INTEGER},
-      receiver_delivery_info_id = #{receiverDeliveryInfoId,jdbcType=INTEGER},
       creation_time = #{creationTime,jdbcType=TIMESTAMP},
-      total = #{total,jdbcType=INTEGER},
-      notes = #{notes,jdbcType=VARCHAR}
+      consumer_id = #{consumerId,jdbcType=INTEGER},
+      delivery_id = #{deliveryId,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

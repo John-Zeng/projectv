@@ -7,11 +7,11 @@ public class Order {
 
     private Integer orderId;
 
+    private Date creationTime;
+
     private Integer consumerId;
 
-    private Integer receiverDeliveryInfoId;
-
-    private Date creationTime;
+    private Integer deliveryId;
 
     private Integer total;
 
@@ -33,6 +33,14 @@ public class Order {
         this.orderId = orderId;
     }
 
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
     public Integer getConsumerId() {
         return consumerId;
     }
@@ -41,20 +49,12 @@ public class Order {
         this.consumerId = consumerId;
     }
 
-    public Integer getReceiverDeliveryInfoId() {
-        return receiverDeliveryInfoId;
+    public Integer getDeliveryId() {
+        return deliveryId;
     }
 
-    public void setReceiverDeliveryInfoId(Integer receiverDeliveryInfoId) {
-        this.receiverDeliveryInfoId = receiverDeliveryInfoId;
-    }
-
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
+    public void setDeliveryId(Integer deliveryId) {
+        this.deliveryId = deliveryId;
     }
 
     public Integer getTotal() {

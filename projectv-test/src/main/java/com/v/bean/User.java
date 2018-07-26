@@ -3,8 +3,6 @@ package com.v.bean;
 import java.util.Date;
 
 public class User {
-
-
     private Integer id;
 
     private String username;
@@ -103,12 +101,5 @@ public class User {
 
     public void setBalance(Integer balance) {
         this.balance = balance;
-    }
-    
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", username=" + username + ", payPwd=" + payPwd + ", password=" + password + ", salt="
-                + salt + ", email=" + email + ", telephone=" + telephone + ", birthday=" + birthday + ", gender="
-                + gender + ", balance=" + balance + "]";
     }
 }

@@ -5,17 +5,21 @@ public class Commodity {
 
     private Integer companyId;
 
-    private Integer brandId;
+    private String image;
 
     private Integer mvoCmdtId;
 
-    private Integer sellerId;
-
     private String name;
 
-    private String imgAddress;
-
     private Integer price;
+
+    private Integer quantity;
+
+    private Integer sellerId;
+
+    private Integer brandId;
+
+    private Integer shopId;
 
     private Byte state;
 
@@ -37,12 +41,12 @@ public class Commodity {
         this.companyId = companyId;
     }
 
-    public Integer getBrandId() {
-        return brandId;
+    public String getImage() {
+        return image;
     }
 
-    public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
     }
 
     public Integer getMvoCmdtId() {
@@ -53,14 +57,6 @@ public class Commodity {
         this.mvoCmdtId = mvoCmdtId;
     }
 
-    public Integer getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(Integer sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public String getName() {
         return name;
     }
@@ -69,20 +65,44 @@ public class Commodity {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getImgAddress() {
-        return imgAddress;
-    }
-
-    public void setImgAddress(String imgAddress) {
-        this.imgAddress = imgAddress == null ? null : imgAddress.trim();
-    }
-
     public Integer getPrice() {
         return price;
     }
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 
     public Byte getState() {
