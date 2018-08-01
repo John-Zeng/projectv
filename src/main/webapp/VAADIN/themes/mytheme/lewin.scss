@@ -1,0 +1,71 @@
+
+@mixin lewin {
+
+.v-popupview-popup {
+    border-radius: 20px;
+    border: 1px solid #358fec;
+    padding: 10px;
+}
+
+a {
+    color: #555555;
+}
+
+a:hover {
+    color: #0069cc;
+}
+
+/* Product */
+
+.v-panel-prod {
+    min-width: 800px;
+    min-height: 770px;
+}
+
+.v-panel-prod .v-button {
+    height: 36px;
+    border: none;
+    border-radius: 18px;
+    box-shadow: none;
+}
+
+.v-verticallayout-page {
+    overflow: scroll;
+}
+
+.selectx .v-radiobutton {
+    height: 50%;
+    width: 100%;
+}
+
+.selectx .v-radiobutton label {
+    width: 90%;
+}
+
+/* Bag */
+
+.v-verticallayout-bag .v-button {
+    height: 36px;
+    border: none;
+    border-radius: 18px;
+    box-shadow: none;
+}
+
+.v-slot-scrollv {
+    overflow: scroll;
+}
+
+.v-panel-leftpanel {
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.v-verticallayout-scrollv .v-button-link:after {
+    content: none;
+}
+
+.v-label-spec {
+    color: #555555;
+}
+}

@@ -1,0 +1,85 @@
+@mixin adminview {
+ .optionsPanel .v-button:after {
+     content: none;
+ }
+
+ .adminView .v-button-link:after {
+     content: none;
+ }
+
+ .adminView .v-panel-content-myPanel {
+     border: 0px;
+     box-shadow: none;
+     border-radius: 0px;
+     background: none;
+     margin: 0px, 0px, 0px, 0px;
+ }
+
+ .adminView .v-grid-row>td {
+     border-bottom: none;
+ }
+
+ .adminView .v-panel {
+     border: 0px;
+     box-shadow: none;
+     border-radius: 0px;
+     background: none;
+     margin: 0px, 0px, 0px, 0px;
+ }
+
+ .adminView .addNewBtn {
+     border: none;
+     border-radius: 20px;
+     text-align: left;
+     width: 100%;
+ }
+
+ .optionsPanel {
+     background: none;
+     box-shadow: none;
+ }
+
+ .adminView .bottom-line {
+     border-width: 0px 0px 1px 0px;
+     border-radius: 0;
+     background: transparent;
+     box-shadow: none;
+     color: inherit;
+ }
+
+ .adminView .v-nativebutton {
+     background-color: #f44336;
+     color: white;
+     border: none;
+ }
+
+ .adminView .secondeInCss {
+     vertical-align: top
+ }
+
+ .optionsPanel .v-slot .v-spacing {
+     width: 0px;
+     height: 0px;
+ }
+
+ .optionsPanel .v-button {
+     background: none;
+     color: #191919;
+     border: none;
+     width: 100%;
+     box-shadow: none;
+     border-radius: 0px;
+     text-align: left;
+ }
+
+ .optionsPanel .v-button:hover {
+     background-color: rgba(60, 60, 81);
+     color: rgba(180, 180, 200);
+ }
+
+ .adminView .v-button:focus {
+     background-color: rgba(60, 60, 81);
+     color: rgba(180, 180, 200);
+     box-shadow: none;
+ }
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v.dao.MemoryMapper" >
+  <resultMap id="BaseResultMap" type="com.v.bean.Memory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pd" property="pd" jdbcType="VARCHAR" />
+    <result column="pl_price" property="plPrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.v.bean.Memory" extends="BaseResultMap" >
+    <result column="mdesc" property="mdesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pd, pl_price
+  </sql>
+  <sql id="Blob_Column_List" >
+    mdesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from memory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.v.bean.Memory" >
+    insert into memory (id, pd, pl_price, 
+      mdesc)
+    values (#{id,jdbcType=INTEGER}, #{pd,jdbcType=VARCHAR}, #{plPrice,jdbcType=DOUBLE}, 
+      #{mdesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.v.bean.Memory" >
+    insert into memory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pd != null" >
+        pd,
+      </if>
+      <if test="plPrice != null" >
+        pl_price,
+      </if>
+      <if test="mdesc != null" >
+        mdesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pd != null" >
+        #{pd,jdbcType=VARCHAR},
+      </if>
+      <if test="plPrice != null" >
+        #{plPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mdesc != null" >
+        #{mdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.v.bean.Memory" >
+    update memory
+    <set >
+      <if test="pd != null" >
+        pd = #{pd,jdbcType=VARCHAR},
+      </if>
+      <if test="plPrice != null" >
+        pl_price = #{plPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mdesc != null" >
+        mdesc = #{mdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.v.bean.Memory" >
+    update memory
+    set pd = #{pd,jdbcType=VARCHAR},
+      pl_price = #{plPrice,jdbcType=DOUBLE},
+      mdesc = #{mdesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.v.bean.Memory" >
+    update memory
+    set pd = #{pd,jdbcType=VARCHAR},
+      pl_price = #{plPrice,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

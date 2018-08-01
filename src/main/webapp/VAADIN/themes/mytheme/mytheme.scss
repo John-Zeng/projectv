@@ -1,0 +1,145 @@
+@import "../valo/valo.scss";
+@import "adminview.scss";
+@import "lewin.scss";
+@import "losi.scss";
+@mixin mytheme {
+    @include valo;
+    @include adminview;
+    @include lewin;
+    @include losi;
+    .panel_sty{
+    background-color:black;
+    }
+  
+    .space .v-spacing{
+    width:55px;
+    height:12px;
+    }
+  
+    .capsty .v-caption{
+	font-weight:900;
+	color:wheat;
+	}
+	
+   .btsty .v-button {
+	padding: 0 16px;
+    color: wheat;
+    font-weight: 900;
+    border-radius: 4px;
+    border: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+
+}
+
+    .taglabel .v-label {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    font-size: 30px;
+    color: wheat;
+    font-weight: 900;
+    background:black;
+}
+	.botlabel .v-label {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    font-size: 22px;
+    color: wheat;
+    font-weight: 900;
+    background:black;
+}
+
+	.labsty .v-label{
+	color:wheat;
+	font-weight: 900;
+	}
+
+	.nobor .v-panel {
+	border: 0px;
+}
+
+ 	.logosty .v-button {
+	padding: 0 1px;
+    color: wheat;
+    font-weight: 900;
+    height:60px;
+    border-radius: 4px;
+    border: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+
+}
+	.btsp .v-margin-left {
+    padding-left: 1px;
+}
+	.btspp .v-margin-right {
+    padding-right: 1px;
+}
+
+	.picbut .v-button {
+	padding: 0 30px;
+    color: wheat;
+    font-weight: 900;
+    height:600px;
+    border-radius: 4px;
+    border: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+
+}
+	.poppanel .v-panel {
+	border-radius: 0px;
+	border: 0px;
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+	overflow: visible !important;
+	color:black;
+}
+
+
+ 
+	.infopanel .v-panel{
+	border-radius: 0px;
+	border: 0px;
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+	overflow: visible !important;
+	color:black;
+}
+
+	.infopanel .v-popupview-popup {
+	padding: 36px 36px;
+    border-radius: 4px;
+    background-color: aliceblue;
+    color: black;
+    -webkit-box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 3px 5px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.09098);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 3px 5px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.09098);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+} 
+    
+}

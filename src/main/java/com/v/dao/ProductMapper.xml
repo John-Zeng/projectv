@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v.dao.ProductMapper">
+	<resultMap id="BaseResultMap" type="com.v.bean.Product">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="image" property="image" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="TINYINT" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.v.bean.Product"
+		extends="BaseResultMap">
+		<result column="more_desc" property="moreDesc"
+			jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, image, price, state
+	</sql>
+	<sql id="Blob_Column_List">
+		more_desc
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from product
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from product
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.v.bean.Product">
+		insert into product (id, name, image,
+		price, state, more_desc
+		)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{image,jdbcType=VARCHAR},
+		#{price,jdbcType=INTEGER}, #{state,jdbcType=TINYINT}, #{moreDesc,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.v.bean.Product">
+		insert into product
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="moreDesc != null">
+				more_desc,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=TINYINT},
+			</if>
+			<if test="moreDesc != null">
+				#{moreDesc,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.v.bean.Product">
+		update product
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=TINYINT},
+			</if>
+			<if test="moreDesc != null">
+				more_desc = #{moreDesc,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs"
+		parameterType="com.v.bean.Product">
+		update product
+		set name = #{name,jdbcType=VARCHAR},
+		image = #{image,jdbcType=VARCHAR},
+		price = #{price,jdbcType=INTEGER},
+		state = #{state,jdbcType=TINYINT},
+		more_desc = #{moreDesc,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.v.bean.Product">
+		update product
+		set name = #{name,jdbcType=VARCHAR},
+		image = #{image,jdbcType=VARCHAR},
+		price = #{price,jdbcType=INTEGER},
+		state = #{state,jdbcType=TINYINT}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getAllProduct" resultType="com.v.bean.Product">
+		select id, name, image, price, state, more_desc moreDesc
+		from product
+	</select>
+    <select id="getAll" resultType="com.v.bean.RecordIns">
+        select 
+           pd.name name, pd.image image, 
+           pd.price+pro.pl_price+m.pl_price price, 
+           pdesc process, mdesc memory,
+           pd.more_desc moreDesc
+        from
+           product as pd 
+        left outer join 
+           processor as pro on pd.name = pro.pd
+        left outer join 
+           memory as m on pd.name = m.pd
+    </select>
+    <select id="getByName" resultType= "com.v.bean.Product"
+        parameterType="java.lang.String">
+        select id, name, image, price, state,more_desc moreDesc
+        from product
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+    
+    <select id = "getSpec" parameterType = "java.lang.String" resultMap="newProduct">
+        select  pd.id id, pd.name name, image, pd.price price, pd.more_desc more_desc,
+        m.id m_id, pro.id p_id, m.mdesc mdesc, pro.pdesc pdesc, m.pd m_pd, 
+        pro.pd p_od, m.pl_price m_price, pro.pl_price p_price
+        from product pd, processor pro, memory m where pd.name = pro.pd and pd.name = m.pd and pd.name = #{name, jdbcType=VARCHAR};
+
+    </select>
+     <resultMap type="com.v.bean.Product" id = "newProduct">
+         <id property = "id" column = "id"/>
+         <result property = "name" column = "name"/>
+         <result property = "image" column = "image"/>
+         <result property = "price" column ="price"/>
+         <result property = "moreDesc" column = "more_desc"/>
+         <collection property="memories" ofType="com.v.bean.Memory">
+             <id property="id" column="m_id"/>
+             <result property = "mdesc" column="mdesc"/>
+             <result property = "pd"  column="m_pd"/>
+             <result property = "plPrice" column="m_price"/>
+         </collection>
+         <collection property = "processors" ofType="com.v.bean.Processor">
+             <id property="id" column="p_id"/>
+             <result property = "pdesc" column="pdesc"/>
+             <result property = "pd"  column="p_pd"/>
+             <result property = "plPrice" column="p_price"/>
+         </collection>
+     </resultMap>
+     
+     <delete id="deleteProductByName" parameterType="java.lang.String">
+         delete from product where name = #{name}
+     </delete>
+     
+        <update id="updateProductByName"
+        parameterType="com.v.bean.Product">
+        update product
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="moreDesc != null">
+                more_desc = #{moreDesc,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where name = #{name,jdbcType=INTEGER}
+    </update>
+    
+    <select id="getProductById" parameterType="java.lang.Integer" resultType="com.v.bean.Product">
+        select id, name, image, more_desc moreDesc from product where id = #{id}
+    </select>
+    
+      <select id="getProductByName" parameterType="java.lang.String" resultType="com.v.bean.Product">
+        select id, name, image, more_desc moreDesc from product where name = #{id}
+    </select>
+</mapper>

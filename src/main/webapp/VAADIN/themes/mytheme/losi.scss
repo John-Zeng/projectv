@@ -1,0 +1,29 @@
+@mixin losi {
+.v-popupview-popup {
+    padding: 20px;
+}
+
+/* Log In View */
+.loginview .v-link {
+    text-decoration: none;
+    color: #555555;
+}
+
+.loginview .v-link:hover {
+    text-decoration: underline;
+    color: #0069cc;
+}
+
+.loginview .v-button {
+    width: 120px;
+}
+
+/* Sign Up View */
+.signupview .v-button {
+    width: 120px;
+}
+
+.signupview .v-textfield {
+    width: 250px;
+}
+}

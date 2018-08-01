@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v.dao.AddressMapper">
+	<resultMap id="BaseResultMap" type="com.v.bean.Address">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="addr_id" property="addrId" jdbcType="VARCHAR" />
+		<result column="username" property="username"
+			jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="addr" property="addr" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="postcode" property="postcode"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, addr_id, username, name, addr, phone, postcode
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from address
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from address
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.v.bean.Address">
+		insert into address (id, addr_id, username,
+		name, addr, phone,
+		postcode)
+		values (#{id,jdbcType=INTEGER}, #{addrId,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{postcode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.v.bean.Address">
+		insert into address
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="addrId != null">
+				addr_id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="addr != null">
+				addr,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="postcode != null">
+				postcode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="addrId != null">
+				#{addrId,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="addr != null">
+				#{addr,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				#{postcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.v.bean.Address">
+		update address
+		<set>
+			<if test="addrId != null">
+				addr_id = #{addrId,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="addr != null">
+				addr = #{addr,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				postcode = #{postcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.v.bean.Address">
+		update address
+		set addr_id = #{addrId,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		addr = #{addr,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		postcode = #{postcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getAllAddress" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from address
+		where username = #{username,jdbcType=INTEGER}
+	</select>
+	
+	   <select id="getAddressById" parameterType="java.lang.String"
+        resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from address
+        where addr_id = #{addrId,jdbcType=INTEGER}
+    </select>
+</mapper>

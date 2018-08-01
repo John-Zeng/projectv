@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v.dao.OrdersMapper">
+	<resultMap id="BaseResultMap" type="com.v.bean.Orders">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="o_id" property="oId" jdbcType="CHAR" />
+		<result column="od_time" property="odTime" jdbcType="TIMESTAMP" />
+		<result column="username" property="username"
+			jdbcType="VARCHAR" />
+		<result column="addr_id" property="addrId" jdbcType="VARCHAR" />
+		<result column="total" property="total" jdbcType="DOUBLE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, o_id, od_time, username, addr_id, total
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from orders
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from orders
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.v.bean.Orders">
+		insert into orders (id, o_id,
+		od_time,
+		username, addr_id, total
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{oId,jdbcType=CHAR},
+		#{odTime,jdbcType=TIMESTAMP},
+		#{username,jdbcType=VARCHAR}, #{addrId,jdbcType=VARCHAR},
+		#{total,jdbcType=DOUBLE}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.v.bean.Orders">
+		insert into orders
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="oId != null">
+				o_id,
+			</if>
+			<if test="odTime != null">
+				od_time,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="addrId != null">
+				addr_id,
+			</if>
+			<if test="total != null">
+				total,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="oId != null">
+				#{oId,jdbcType=CHAR},
+			</if>
+			<if test="odTime != null">
+				#{odTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="addrId != null">
+				#{addrId,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.v.bean.Orders">
+		update orders
+		<set>
+			<if test="oId != null">
+				o_id = #{oId,jdbcType=CHAR},
+			</if>
+			<if test="odTime != null">
+				od_time = #{odTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="addrId != null">
+				addr_id = #{addrId,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				total = #{total,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.v.bean.Orders">
+		update orders
+		set o_id = #{oId,jdbcType=CHAR},
+		od_time =
+		#{odTime,jdbcType=TIMESTAMP},
+		username = #{username,jdbcType=VARCHAR},
+		addr_id = #{addrId,jdbcType=VARCHAR},
+		total = #{total,jdbcType=DOUBLE}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getUserOrders" parameterType="java.lang.String"
+		resultMap="newOrder">
+           select od.id order_id, od.o_id oId, od_time, od.username usern, od.addr_id addrId, total, 
+                  r.id record_id,  r.r_id rId, r.pd, r.price price , r.state state,
+                  a.id address_id, a.addr_id addrId, a.name name,  addr, phone, postcode
+             from orders od inner join item i inner join record r inner join address a 
+            where od.username = #{username,jdbcType=VARCHAR} and od.o_id = i.o_id and i.r_id = r.r_id 
+              and od.addr_id = a.addr_id
+
+	</select>
+	<resultMap type="com.v.bean.Orders" id="newOrder">
+		<id property="id" column="order_id" />
+		<result property="oId" column="oId" />
+		<result property="odTime" column="od_time" />
+		<result property="username" column="usern" />
+		<result property="total" column="total" />
+		<result property="addrId" column="addr_id" />
+		<association property="address" javaType="com.v.bean.Address">
+            <id property="id" column="address_id" />
+            <result property="addrId" column="addrId"/> 
+            <result property="username" column="usern" />
+            <result property="name" column="name" />
+            <result property="addr" column="addr" />
+            <result property="phone" column="phone" />
+            <result property="postcode" column="postcode" />
+        </association>
+		<collection property="records" ofType="com.v.bean.Record">
+			<id property="id" column="record_id" />
+			<result property="rId" column="rId" />
+			<result property="pd" column="pd" />
+			<result property="price" column="price" />
+			<result property="state" column="state" />
+		</collection>
+		
+	</resultMap>
+
+</mapper>

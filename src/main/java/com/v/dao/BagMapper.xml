@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v.dao.BagMapper">
+	<resultMap id="BaseResultMap" type="com.v.bean.Bag">
+		<id column="username" property="username" jdbcType="VARCHAR" />
+		<id column="r_id" property="rId" jdbcType="VARCHAR" />
+		<result column="count" property="count" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		username, r_id, count
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="com.v.bean.BagKey">
+		select
+		<include refid="Base_Column_List" />
+		from bag
+		where username = #{username,jdbcType=VARCHAR}
+		and r_id = #{rId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="com.v.bean.BagKey">
+		delete from bag
+		where username = #{username,jdbcType=VARCHAR}
+		and r_id = #{rId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.v.bean.Bag">
+		insert into bag (username, r_id, count
+		)
+		values (#{username,jdbcType=VARCHAR}, #{rId,jdbcType=VARCHAR},
+		#{count,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.v.bean.Bag">
+		insert into bag
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				username,
+			</if>
+			<if test="rId != null">
+				r_id,
+			</if>
+			<if test="count != null">
+				count,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="rId != null">
+				#{rId,jdbcType=VARCHAR},
+			</if>
+			<if test="count != null">
+				#{count,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.v.bean.Bag">
+		update bag
+		<set>
+			<if test="count != null">
+				count = #{count,jdbcType=INTEGER},
+			</if>
+		</set>
+		where username = #{username,jdbcType=VARCHAR}
+		and r_id = #{rId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.v.bean.Bag">
+		update bag
+		set count = #{count,jdbcType=INTEGER}
+		where username = #{username,jdbcType=VARCHAR}
+		and r_id = #{rId,jdbcType=VARCHAR}
+	</update>
+	<delete id="deleteBag" parameterType="java.lang.String">
+		delete from bag
+		where username = #{username,jdbcType=VARCHAR}
+	</delete>
+	
+	<delete id="deleteById" parameterType="java.lang.String" >
+	    delete from bag
+        where r_id = #{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>
